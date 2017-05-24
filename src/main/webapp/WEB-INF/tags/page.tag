@@ -39,16 +39,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><fmt:message bundle="${home}" key="home.title"/></a>
+            <c:url var="myPage" value="/"/>
+            <a class="navbar-brand" href="${myPage}"><fmt:message bundle="${home}" key="home.title"/></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <c:url var="newsPage" value="/news"/>
-                <li><a href="${newsPage}"><fmt:message bundle="${home}" key="home.news"/></a></li>
-                <c:url var="myPage" value="/myPage"/>
-                <li><a href="${myPage}"><fmt:message bundle="${home}" key="home.my.page"/></a></li>
+                <c:url var="searchPage" value="/search"/>
+                <li><a href="${searchPage}"><fmt:message bundle="${home}" key="home.search"/></a></li>
+                <c:url var="recPage" value="/getrec"/>
+                <li><a href="${recPage}"><fmt:message bundle="${home}" key="home.get.rec"/></a></li>
+                <c:url var="favPage" value="/favorites"/>
+                <li><a href="${favPage}"><fmt:message bundle="${home}" key="home.favorites"/></a></li>
             </ul>
             <c:url var="localePage" value="/locale"/>
             <c:set var="currentUrl" value="${requestScope['javax.servlet.forward.request_uri']}?${pageContext.request.queryString}"/>
@@ -76,7 +79,6 @@
     <jsp:doBody/>
 </div>
 
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />

@@ -3,8 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.epam.course.java.se</groupId>
-    <artifactId>rec_system</artifactId>
-    <name>rec_system Maven Webapp</name>
+    <artifactId>drive_club</artifactId>
+    <name>drive_club Maven Webapp</name>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
@@ -156,10 +156,10 @@
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.4.1.v20170120</version>
+                <version>9.2.11.v20150529</version>
                 <configuration>
                     <webApp>
-                        <contextPath>/rec_system</contextPath>
+                        <contextPath>/recommender</contextPath>
                     </webApp>
                 </configuration>
             </plugin>

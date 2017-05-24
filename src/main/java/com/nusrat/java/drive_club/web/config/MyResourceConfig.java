@@ -15,6 +15,7 @@ import javax.ws.rs.ApplicationPath;
 @ApplicationPath("/")
 public class MyResourceConfig extends ResourceConfig {
     public MyResourceConfig() {
+
         packages("com.nusrat.java.drive_club");
         packages("org.glassfish.jersey.examples.jackson");
         register(LoggingFilter.class);

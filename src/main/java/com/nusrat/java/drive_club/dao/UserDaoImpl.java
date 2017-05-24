@@ -36,6 +36,7 @@ public class UserDaoImpl implements UserDao {
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
             return Optional.ofNullable(User.builder()
+                    .id(resultSet.getInt("id"))
                     .passwordHash(resultSet.getString("passwordhash"))
                     .loginName(resultSet.getString("login"))
                     .firstName(resultSet.getString("firstname"))
