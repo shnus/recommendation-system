@@ -1,5 +1,6 @@
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="i18n.home" var="home"/>
 <%@page contentType="text/html; charset=UTF-8" language="java"%>
@@ -8,6 +9,8 @@
 
 <tags:page title="${title}">
 
+    <c:url var="starjs" value="/static/js/stars.js"/>
+    <script language="JavaScript" type="text/javascript" src="${starjs}"> </script>
     <script>
         $(document).ready(function() {
             $("#search").click(function () {
@@ -16,13 +19,9 @@
             });
         });
 
-
-
-
-
         function search() {
-            var surl = "https://api.themoviedb.org/3/search/movie?api_key=d5fbdafc1e8b3130160515b181cd55be&language=en-US" +
-                "&query="+encodeURI($("#text").val())+"&page=1&include_adult=false";
+            var lang = "${sessionScope.locale}"
+            var surl = "https://api.themoviedb.org/3/search/movie?api_key=d5fbdafc1e8b3130160515b181cd55be&language="+lang+"-US&query="+encodeURI($("#text").val())+"&page=1&include_adult=false";
             var settings = {
                 "async": true,
                 "crossDomain": true,
@@ -41,6 +40,8 @@
                     $("#results").append("No such movie in database");
                 }else {
                     for (var i = 0; i < films.length; i++) {
+                        if(films[i].poster_path==null)
+                            continue;
                         var tag = document.createElement("tags:result");
                         var title = films[i].title;
                         var overview = films[i].overview;
@@ -48,6 +49,8 @@
                         var origignal_language = films[i].original_language;
                         var poster_path = "https://image.tmdb.org/t/p/w500" + films[i].poster_path;
                         var vote_average = films[i].vote_average;
+
+                        var rate = Math.round(Number(vote_average));
 
                         $("#results").append('' +
                             '<article>' +
@@ -61,6 +64,8 @@
                             '<li><span>Release date: ' + release_date + '</span></li>' +
                             '<li><span>Original language: ' + origignal_language + '</span></li>' +
                             '<li></i> <span>Average score: ' + vote_average + '</span></li>' +
+                            '<li></i> <span>Rate the movie if you already watched:</span></li>' +
+                            '<li></i> <span><input type="number" name="your_awesome_parameter" id="some_id" class="rating" data-max="10" data-min="1" value="'+rate+'"/></span></li>' +
                             '</ul>' +
                             '</div>' +
                             '<div class="col-xs-12 col-sm-12 col-md-7 excerpet">' +
@@ -72,6 +77,7 @@
                             '</article>' +
                             '</article>');
                     }
+                    $.getScript('static/js/stars.js');
                 }
             });
         }
@@ -82,7 +88,7 @@
     <style>
         @import "http://fonts.googleapis.com/css?family=Roboto:300,400,500,700";
 
-        .container { margin-top: 20px; }
+
         .mb20 { margin-bottom: 20px; }
 
         hgroup { padding-left: 15px; border-bottom: 1px solid #ccc; }
@@ -92,7 +98,7 @@
         .search-result .thumbnail { border-radius: 0 !important; }
         .search-result:first-child { margin-top: 0 !important; }
         .search-result { margin-top: 20px; }
-        .search-result .col-md-2 { border-right: 1px dotted #ccc; min-height: 140px; }
+        .search-result .col-md-2 { min-height: 150px; min-width: 300px}
         .search-result ul { padding-left: 0 !important; list-style: none;  }
         .search-result ul li { font: 400 normal .85em "Roboto",Arial,Verdana,sans-serif;  line-height: 30px; }
         .search-result ul li i { padding-right: 5px; }
@@ -119,6 +125,8 @@
     <div class="container">
 
     <hgroup class="mb20">
+        <br/>
+        <br/>
         <h1>Search Results</h1>
         </hgroup>
 
@@ -126,5 +134,6 @@
 
 
     </section>
+
     </div>
 </tags:page>
