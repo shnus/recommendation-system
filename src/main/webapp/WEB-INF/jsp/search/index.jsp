@@ -42,7 +42,6 @@
                     for (var i = 0; i < films.length; i++) {
                         if(films[i].poster_path==null)
                             continue;
-                        var tag = document.createElement("tags:result");
                         var title = films[i].title;
                         var overview = films[i].overview;
                         var release_date = films[i].release_date;
@@ -64,7 +63,7 @@
                             '<li><span>Release date: ' + release_date + '</span></li>' +
                             '<li><span>Original language: ' + origignal_language + '</span></li>' +
                             '<li></i> <span>Average score: ' + vote_average + '</span></li>' +
-                            '<li></i> <span>Rate the movie if you already watched:</span></li>' +
+                            '<li></i> <span>Rate the movie:</span></li>' +
                             '<li></i> <span><input type="number" name="your_awesome_parameter" id="some_id" class="rating" data-max="10" data-min="1" value="'+rate+'"/></span></li>' +
                             '</ul>' +
                             '</div>' +
@@ -98,10 +97,10 @@
         .search-result .thumbnail { border-radius: 0 !important; }
         .search-result:first-child { margin-top: 0 !important; }
         .search-result { margin-top: 20px; }
-        .search-result .col-md-2 { min-height: 150px; min-width: 300px}
+        .search-result .col-md-2 { min-height: 150px; min-width: 190px}
         .search-result ul { padding-left: 0 !important; list-style: none;  }
         .search-result ul li { font: 400 normal .85em "Roboto",Arial,Verdana,sans-serif;  line-height: 30px; }
-        .search-result ul li i { padding-right: 5px; }
+        .search-result ul li i { padding-right: 2px; }
         .search-result .col-md-7 { position: relative; }
         .search-result h3 { font: 500 normal 1.375em "Roboto",Arial,Verdana,sans-serif; margin-top: 0 !important; margin-bottom: 10px !important; }
         .search-result h3 > a, .search-result i { color: #248dc1 !important; }
@@ -110,14 +109,14 @@
         .search-result span.plus a { background-color: #248dc1; padding: 5px 5px 3px 5px; }
         .search-result span.plus a:hover { background-color: #414141; }
         .search-result span.plus a i { color: #fff !important; }
-        .search-result span.border { display: block; width: 97%; margin: 0 15px; border-bottom: 1px dotted #ccc; }
+        .search-result span.border { display: block; width: 100%; margin: 0 15px; border-bottom: 1px dotted #ccc; }
     </style>
 
     <div class="container">
         <div class="row">
-            <h2>Find film</h2>
+            <h2>Find movie</h2>
             <div class="search">
-                <input id="text" type="text" class="form-control input-sm" maxlength="150" placeholder="Film, serial ..." />
+                <input id="text" type="text" class="form-control input-sm" maxlength="150" placeholder="Movie, serial ..." />
                 <button id="search" type="submit" class="btn btn-primary btn-sm">Search</button>
             </div>
         </div>
